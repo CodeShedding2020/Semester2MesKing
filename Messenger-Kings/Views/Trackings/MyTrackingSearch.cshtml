@@ -1,0 +1,287 @@
+﻿
+@model Messenger_Kings.Models.Tracking
+
+@{
+    ViewBag.Title = "MyTrackingSearch";
+}
+<head>
+
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="main.css">
+
+    <style>
+        img {
+            width: 200px;
+            display: block;
+        }
+
+        div img {
+            width: 200px;
+            display: block;
+        }
+    </style>
+    <script src="~/Scripts/qrcode/qrcode.js"></script>
+</head>
+
+
+<style>
+
+    ol.progtrckr {
+        margin: 0;
+        padding: 0;
+        list-style-type none;
+    }
+
+        ol.progtrckr li {
+            display: inline-block;
+            text-align: center;
+            line-height: 3.5em;
+        }
+
+        ol.progtrckr[data-progtrckr-steps="2"] li {
+            width: 49%;
+        }
+
+        ol.progtrckr[data-progtrckr-steps="3"] li {
+            width: 33%;
+        }
+
+        ol.progtrckr[data-progtrckr-steps="4"] li {
+            width: 24%;
+        }
+
+        ol.progtrckr[data-progtrckr-steps="5"] li {
+            width: 19%;
+        }
+
+        ol.progtrckr[data-progtrckr-steps="6"] li {
+            width: 16%;
+        }
+
+        ol.progtrckr[data-progtrckr-steps="7"] li {
+            width: 14%;
+        }
+
+        ol.progtrckr[data-progtrckr-steps="8"] li {
+            width: 12%;
+        }
+
+        ol.progtrckr[data-progtrckr-steps="9"] li {
+            width: 11%;
+        }
+
+        ol.progtrckr li.progtrckr-done {
+            color: black;
+            border-bottom: 4px solid yellowgreen;
+        }
+
+        ol.progtrckr li.progtrckr-todo {
+            color: silver;
+            border-bottom: 4px solid silver;
+        }
+
+        ol.progtrckr li:after {
+            content: "\00a0\00a0";
+        }
+
+        ol.progtrckr li:before {
+            position: relative;
+            bottom: -2.5em;
+            float: left;
+            left: 50%;
+            line-height: 1em;
+        }
+
+        ol.progtrckr li.progtrckr-done:before {
+            content: "\2713";
+            color: white;
+            background-color: yellowgreen;
+            height: 2.2em;
+            width: 2.2em;
+            line-height: 2.2em;
+            border: none;
+            border-radius: 2.2em;
+        }
+
+        ol.progtrckr li.progtrckr-todo:before {
+            content: "\039F";
+            color: silver;
+            background-color: white;
+            font-size: 2.2em;
+            bottom: -1.2em;
+        }
+</style>
+
+
+
+<body>
+
+    <div>
+        <h4>Tracking Details For @Model.Track_ID</h4>
+        <hr />
+
+
+
+        <center>
+            <h4>Scan The QR Code On Your Phone</h4>
+
+
+            <main>
+                <div id="output"></div>
+
+            </main>
+            <h4>To Keep Track On The Go</h4>
+        </center>
+        <script>
+
+
+
+
+
+
+            let qrcode = new QRCode("output", {
+                text: window.location.href,
+                width: 177,
+                height: 177,
+                colorDark: "#990000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+
+
+        </script>
+
+
+
+        <br />
+        <br />
+        <br />
+        <br />
+
+
+
+
+        <ol class="progtrckr" data-progtrckr-steps="5">
+            <li class="progtrckr-done">Booking Confirmed</li>
+            <!--
+            -->
+            <li class="progtrckr-done">Order Approved</li>
+            <!--
+            -->
+            <li id="Out" class="progtrckr-todo">Out for Delivery</li>
+            <!--
+            -->
+            <li id="Picked" class="progtrckr-todo">Picked Up Package</li>
+            <!--
+            -->
+            <li id="Delivered" class="progtrckr-todo">Delivered</li>
+        </ol>
+
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <dl class="dl-horizontal">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Track_ID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Track_ID)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Track_Message)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Track_Message)
+            </dd>
+
+        </dl>
+
+        <br />
+        <br />
+        <br />
+        <dl class="dl-horizontal">
+            <dt>
+                Pickup Date
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Order.Bookings.Book_PickupDate)
+            </dd>
+
+            <dt>
+                Delivery Date
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Order.Bookings.Book_DeliveryDate)
+            </dd>
+
+            <dt>
+                Recipients Name
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Order.Bookings.Book_RecipientName)   @Html.DisplayFor(model => model.Order.Bookings.Book_RecipientSurname)
+            </dd>
+
+            <dt>
+                Delivery Note
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Order.Bookings.Book_DeliveryNote)
+            </dd>
+
+        </dl>
+    </div>
+</body>
+<script>
+    var Out = 'Out';
+    var Picked = 'Picked';
+    var Delivered = 'Delivered';
+    var message = '@Model.Track_Message';
+
+    var myClassName = "progtrckr-done";
+    var d;
+    var e;
+    var f;
+
+
+
+
+    d = document.getElementById(Out);
+    e = document.getElementById(Picked);
+    f = document.getElementById(Delivered);
+
+    if (message == 'Out For Delivery') {
+        d.className = myClassName;
+    }
+    else if (message == 'Picked Up Package')
+    {
+
+        d.className = myClassName;
+        e.className = myClassName;
+
+    }
+    else if (message == 'Delivered') {
+
+        d.className = myClassName;
+        e.className = myClassName;
+        f.className = myClassName;
+
+    }
+
+
+
+</script>
+<p>
+
+
+    @Html.ActionLink("Track Another Package", "MyTracking", new { @class = "btn btn-success" })
+</p>

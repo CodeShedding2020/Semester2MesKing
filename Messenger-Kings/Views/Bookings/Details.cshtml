@@ -1,0 +1,97 @@
+﻿@model Messenger_Kings.Models.Booking
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Review Your Booking</h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Client.Client_IDNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Client.Client_IDNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quote.Quote_PickupAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quote.Quote_PickupAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Book_PickupDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Book_PickupDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Book_DeliveryDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Book_DeliveryDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Book_RecipientName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Book_RecipientName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Book_RecipientSurname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Book_RecipientSurname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Book_RecipientNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Book_RecipientNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Book_DeliveryNote)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Book_DeliveryNote)
+        </dd>
+
+         <br/>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Book_TotalCost)
+        </dt>
+
+        <dd>
+          R @Html.DisplayFor(model => model.Book_TotalCost)
+        </dd>
+
+          
+
+    </dl>
+</div>
+<div class="row">
+    <a href='@Url.Action("Validate", "Bookings", new { id = Model.Book_ID }, null)' class="btn btn-success">Confirm booking</a>
+
+    <a href='@Url.Action("Edit", "Bookings", new { id = Model.Book_ID }, null)' class="btn btn-warning">Edit</a>
+
+    <a href='@Url.Action("Delete", "Bookings", new { id = Model.Book_ID }, null)' class="btn btn-danger">Cancel</a>
+</div>

@@ -1,0 +1,130 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<h1>Welcome to Messenger King Courier Services</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+<style>
+    .wrapper {
+        position: relative;
+        width: 300px;
+        height: 340px;
+        left: 90%;
+        top: 10px
+    }
+
+
+    .acc {
+        overflow: hidden;
+        padding: 0;
+    }
+
+
+
+    .acc_ctrl {
+        background: #F2F2F2;
+        border: none;
+        cursor: pointer;
+        display: block;
+        outline: none;
+        position: relative;
+        text-align: left;
+        width: 100%;
+    }
+
+        .acc_ctrl:before {
+            background: #44596B;
+            content: '';
+            height: 2px;
+            margin-right: 37px;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            -webkit-transform: rotate(90deg);
+            -moz-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+            -o-transform: rotate(90deg);
+            transform: rotate(90deg);
+            -webkit-transition: all 0.2s ease-in-out;
+            -moz-transition: all 0.2s ease-in-out;
+            -ms-transition: all 0.2s ease-in-out;
+            -o-transition: all 0.2s ease-in-out;
+            transition: all 0.2s ease-in-out;
+            width: 14px;
+        }
+
+        .acc_ctrl:after {
+            background: #44596B;
+            content: '';
+            height: 2px;
+            margin-right: 37px;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            width: 14px;
+        }
+
+        .acc_ctrl.active:before {
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+
+        .acc_ctrl.active h2, .acc_ctrl:focus h2 {
+            position: relative;
+        }
+
+    .acc_panel {
+        background: #FFFFFF;
+        display: none;
+        overflow: hidden;
+        height: 340px;
+    }
+</style>
+<div class="wrapper">
+    <div class="container1">
+        <ul class="acc">
+
+            <button class="acc_ctrl"><h4>Virtual Assistant</h4></button>
+            <div class="acc_panel">
+                <iframe width="300" height="340" allow="microphone;" src="https://console.dialogflow.com/api-client/demo/embedded/406988e2-2254-442d-895f-6e9418213045"></iframe>
+            </div>
+
+        </ul>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.acc_ctrl').on('click', function (e) {
+            e.preventDefault();
+            if ($(this).hasClass('active')) {
+                $(this).removeClass('active');
+                $(this).next()
+                    .stop()
+                    .slideUp(300);
+            } else {
+                $(this).addClass('active');
+                $(this).next()
+                    .stop()
+                    .slideDown(300);
+            }
+        });
+    });</script>

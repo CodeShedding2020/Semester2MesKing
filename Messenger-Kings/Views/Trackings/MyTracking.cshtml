@@ -1,0 +1,38 @@
+﻿
+@model Messenger_Kings.Models.Tracking
+
+@{
+    ViewBag.Title = "MyTracking";
+}
+
+<h2>Tracking</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+
+
+
+
+    <center>
+
+        <h3>Enter Tracking Number</h3><br />  <input type="text" id="txtId" placeholder="eg. MK-4498489849"><br /><br />
+
+        <input type="button" value="Track" onclick="location.href='@Url.Action("MyTrackingSearch", "Trackings")?id=' + document.getElementById('txtId').value" class="btn btn-success" />
+        <br />
+        <br />
+        <text> <span style="color:red;">  @ViewBag.NoTrack</span> </text>
+
+    </center>
+}
+
+<div>
+    @*@Html.ActionLink("Track Another Package", "Index")*@
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
